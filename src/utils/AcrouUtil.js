@@ -111,24 +111,24 @@ export function get_filex(path, callback) {
   });
 }
 
-//时间转换
+//Time conversion
 export function utc2beijing(utc_datetime) {
-  // 转为正常的时间格式 年-月-日 时:分:秒
+  // Convert to normal time format year-month-day hour: minute: second
   var T_pos = utc_datetime.indexOf("T");
   var Z_pos = utc_datetime.indexOf("Z");
   var year_month_day = utc_datetime.substr(0, T_pos);
   var hour_minute_second = utc_datetime.substr(T_pos + 1, Z_pos - T_pos - 1);
   var new_datetime = year_month_day + " " + hour_minute_second; // 2017-03-31 08:02:06
 
-  // 处理成为时间戳
+  // Processing becomes timestamp
   var timestamp = new Date(Date.parse(new_datetime));
   timestamp = timestamp.getTime();
   timestamp = timestamp / 1000;
 
-  // 增加8个小时，北京时间比utc时间多八个时区
+  // Increased by 8 hours, Beijing time is eight time zones more than UTC time
   var unixtimestamp = timestamp + 8 * 60 * 60;
 
-  // 时间戳转为时间
+  // Timestamp to time
   unixtimestamp = new Date(unixtimestamp * 1000);
   var year = 1900 + unixtimestamp.getYear();
   var month = "0" + (unixtimestamp.getMonth() + 1);
@@ -168,9 +168,9 @@ export function formatFileSize(bytes) {
   return bytes;
 }
 
-/** 日期格式化
+/** Date formatting
  * @param {Number String Date}
- * @param {String} 'YYYY-MM-DD HH:mm:ss EEE' 年(Y)、月(M)、日(D)、12小时(h)、24小时(H)、分(m)、秒(s)、毫秒(S)、周(E)、季度(q)
+ * @param {String} 'YYYY-MM-DD HH:mm:ss EEE' Year (Y), month (M), day (D), 12 hours (h), 24 hours (H), minutes (m), seconds (s), milliseconds (S), weeks (E), quarters (q) )Date formatting
  * @return {String}
  * @example XDate.format(new Date(), "YYYY-MM-DD") ==> 2017-08-23
  */

@@ -9,8 +9,8 @@ const util = {
 }
 
 /**
- * @description 更新标题
- * @param {String} title 标题
+ * @description Update title
+ * @param {String} title title
  */
 util.title = function (titleText) {
   const processTitle = process.env.VUE_APP_TITLE || 'GoIndex'
@@ -18,8 +18,8 @@ util.title = function (titleText) {
 }
 
 /**
- * @description 打开新页面
- * @param {String} url 地址
+ * @description Open new page
+ * @param {String} url address
  */
 util.open = function (url) {
   var a = document.createElement('a')

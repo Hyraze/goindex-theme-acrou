@@ -162,7 +162,7 @@ export default {
   methods: {
     ...mapActions("acrou/aplayer", ["add"]),
     infiniteHandler($state) {
-      // 首次进入页面不执行滚动事件
+      // The scroll event is not executed when entering the page for the first time
       if (!this.page.page_token) {
         return;
       }
@@ -185,7 +185,7 @@ export default {
         .then((res) => {
           var body = res.data;
           if (body) {
-            // 判断响应状态
+            // Determine the response status
             if (body.error && body.error.code == "401") {
               this.checkPassword(path);
               return;

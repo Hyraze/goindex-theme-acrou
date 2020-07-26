@@ -30,7 +30,7 @@ export default {
       required: false,
       default: false,
     },
-    // 百度网盘分享链接特殊样式
+    // Baidu network disk sharing link special style
     baidupan: {
       type: Boolean,
       required: false,
@@ -66,15 +66,15 @@ export default {
       }
       return source;
     },
-    // 使用 md 初始化
+    // Use md to initialize
     initWithMd() {
       this.markedHTML = this.marked(this.handler(this.source));
     },
-    // 使用 url 初始化
+    // Use url to initialize
     async initWithUrl() {
       this.markedHTML = await this.getReadme(this.url);
     },
-    // 从 url 加载原始数据
+    // Load raw data from url
     async getReadme(url) {
       const data = await ComponentsMarkdownBase(url);
       console.log(data);
@@ -83,7 +83,7 @@ export default {
     marked(data) {
       const renderer = new marked.Renderer();
       renderer.blockquote = (quote) => {
-        // 百度网盘
+        // Baidu SkyDrive
         return (
           (this.baidupan && bandupan(quote, this.$baseUrl)) ||
           `<blockquote>${quote}</blockquote>`
@@ -107,7 +107,7 @@ export default {
     flex-direction: column;
   }
 }
-// 百度云
+// Baidu cloud
 $baidupanHeight: 30px;
 $baidupanPadding: 10px;
 .baidupan {

@@ -1,6 +1,6 @@
 const cdnDependencies = require("./dependencies-cdn");
 
-// 引入文件的 cdn 链接
+// CDN link to import file
 const cdn = {
   css: cdnDependencies.map((e) => e.css).filter((e) => e),
   js: cdnDependencies.map((e) => e.js).filter((e) => e),
@@ -18,7 +18,7 @@ class BuildAppJSPlugin {
         if (isProd) {
           reg = "(app|chunk-vendors)\\.";
         }
-        // 遍历所有编译过的资源文件
+        // Traverse all compiled resource files
         for (let filename in compilation.assets) {
           if (filename.match(reg + ".*\\.js$")) {
             if (isProd) {
@@ -58,7 +58,7 @@ class BuildAppJSPlugin {
         cssarr.forEach((item) => {
           cssContent += `@import url(${item});\n`;
         });
-        // 将这个列表作为一个新的文件资源，插入到 webpack 构建中：
+        // Use this list as a new file resource and insert it into the webpack build:
         compilation.assets["app.js"] = {
           source: function () {
             return content;

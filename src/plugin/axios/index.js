@@ -2,29 +2,29 @@ import axios from "axios";
 import store from "@/store";
 import notify from "@/components/notification";
 
-// 创建一个 axios 实例
+// Create axios Instance
 const service = axios.create({
   baseURL: process.env.VUE_APP_API ? process.env.VUE_APP_API : "",
   //   timeout: 30000,
 });
 
-// 请求拦截器
+// Request interceptor
 service.interceptors.request.use(
   (config) => {
-    // 在发送请求设置cancel token
+    // Send request settings cancel token
     config.cancelToken = new axios.CancelToken((cancel) => {
       store.dispatch("acrou/cancelToken/push", cancel);
     });
     return config;
   },
   (error) => {
-    // 发送失败
+    // Failed to send
     console.log(error);
     return Promise.reject(error);
   }
 );
 
-// 响应拦截器
+// Response interceptor
 service.interceptors.response.use(
   (response) => {
     return response;

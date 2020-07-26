@@ -16,13 +16,13 @@ db
 export default db
 
 /**
- * @description 检查路径是否存在 不存在的话初始化
- * @param {Object} payload dbName {String} 数据库名称
- * @param {Object} payload path {String} 路径
- * @param {Object} payload user {Boolean} 区分用户
- * @param {Object} payload validator {Function} 数据校验钩子 返回 true 表示验证通过
- * @param {Object} payload defaultValue {*} 初始化默认值
- * @returns {String} 可以直接使用的路径
+ * @description Check if the path exists, initialize if it does not exist
+ * @param {Object} payload dbName {String} Name database
+ * @param {Object} payload path {String} path
+ * @param {Object} payload user {Boolean} Differentiate users
+ * @param {Object} payload validator {Function} The data verification hook returns true to indicate that the verification passed
+ * @param {Object} payload defaultValue {*} Initialize the default value
+ * @returns {String} Path that can be used directly
  */
 export function pathInit ({
   dbName = 'database',
@@ -43,12 +43,12 @@ export function pathInit ({
 }
 
 /**
- * @description 将数据存储到指定位置 | 路径不存在会自动初始化
- * @description 效果类似于取值 dbName.path = value
- * @param {Object} payload dbName {String} 数据库名称
- * @param {Object} payload path {String} 存储路径
- * @param {Object} payload value {*} 需要存储的值
- * @param {Object} payload user {Boolean} 是否区分用户
+ * @description Store the data in the specified location | If the path does not exist, it will be initialized automatically
+ * @description The effect is similar to the value dbName.path = value
+ * @param {Object} payload dbName {String} Name database
+ * @param {Object} payload path {String} Storage path
+ * @param {Object} payload value {*} The value to be stored
+ * @param {Object} payload user {Boolean} Whether to distinguish users
  */
 export function dbSet ({
   dbName = 'database',
@@ -64,12 +64,12 @@ export function dbSet ({
 }
 
 /**
- * @description 获取数据
- * @description 效果类似于取值 dbName.path || defaultValue
- * @param {Object} payload dbName {String} 数据库名称
- * @param {Object} payload path {String} 存储路径
- * @param {Object} payload defaultValue {*} 取值失败的默认值
- * @param {Object} payload user {Boolean} 是否区分用户
+ * @description retrieve data
+ * @description The effect is similar to the value dbName.path || defaultValue
+ * @param {Object} payload dbName {String} Name database
+ * @param {Object} payload path {String} Storage path
+ * @param {Object} payload defaultValue {*} Default value of failed value
+ * @param {Object} payload user {Boolean} Whether to distinguish users
  */
 export function dbGet ({
   dbName = 'database',
@@ -88,8 +88,8 @@ export function dbGet ({
 }
 
 /**
- * @description 获取存储数据库对象
- * @param {Object} payload user {Boolean} 是否区分用户
+ * @description Get storage database objects
+ * @param {Object} payload user {Boolean} Whether to distinguish users
  */
 export function database ({
   dbName = 'database',

@@ -65,7 +65,7 @@ export default {
     render() {
       this.index = this.$route.params.id;
       let cmd = this.$route.params.cmd;
-      // 如果是搜索不进行渲染
+      // If it is search, no rendering
       if (cmd === "search") {
         this.navs = [];
         return;

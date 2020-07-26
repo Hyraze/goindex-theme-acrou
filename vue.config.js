@@ -8,7 +8,7 @@ function resolve(dir) {
   return path.join(__dirname, dir);
 }
 
-// 增加环境变量
+//environment variables
 process.env.VUE_APP_VERSION = require("./package.json").version;
 process.env.VUE_APP_G2INDEX_VERSION = require("./package.json").g2index;
 
@@ -18,18 +18,18 @@ process.env.VUE_APP_CDN_PATH =
     "@v" + process.env.VUE_APP_VERSION
   ) || "/";
 
-// 基础路径 注意发布之前要先修改这里
+// Basic path Note that you must modify this before publishing
 let publicPath = process.env.VUE_APP_CDN_PATH || "/";
 let cdnPath = process.env.VUE_APP_CDN_PATH;
 const isProd = process.env.NODE_ENV === "production";
 
-// 设置不参与构建的库
+// Set up libraries not involved in the build
 let externals = {};
 cdnDependencies.forEach((item) => {
   externals[item.name] = item.library;
 });
 
-// 引入文件的 cdn 链接
+// CDN link to import file
 const cdn = {
   css: cdnDependencies.map((e) => e.css).filter((e) => e),
   js: cdnDependencies.map((e) => e.js).filter((e) => e),
@@ -39,7 +39,7 @@ module.exports = {
   lintOnSave: true,
   css: {
     loaderOptions: {
-      // 设置 scss 公用变量文件
+      // Set scss public variable file
       sass: {
         prependData: `$cdnPath: "${isProd ? cdnPath : "/"}";`,
       },
@@ -66,7 +66,7 @@ module.exports = {
   chainWebpack: (config) => {
     config.plugin("BuildAppJSPlugin").use(BuildAppJSPlugin);
     /**
-     * 添加 CDN 参数到 htmlWebpackPlugin 配置中
+     * // Solve vue cli3 hot update failure https://github.com/vuejs/vue-cli/issues/1559
      */
     config.plugin("html").tap((options) => {
       if (isProd) {
@@ -81,15 +81,15 @@ module.exports = {
       return options;
     });
     /**
-     * 删除懒加载模块的 prefetch preload，降低带宽压力
+     * Delete the prefetch preload of the lazy loading module to reduce bandwidth pressure
      * https://cli.vuejs.org/zh/guide/html-and-static-assets.html#prefetch
      * https://cli.vuejs.org/zh/guide/html-and-static-assets.html#preload
-     * 而且预渲染时生成的 prefetch 标签是 modern 版本的，低版本浏览器是不需要的
+     * And the prefetch tag generated during pre-rendering is the modern version, which is not needed for lower version browsers
      */
     if (isProd) {
       config.plugins.delete("prefetch").delete("preload");
     }
-    // 解决 cli3 热更新失效 https://github.com/vuejs/vue-cli/issues/1559
+    // Solve cli3 hot update failure https://github.com/vuejs/vue-cli/issues/1559
     config.resolve.symlinks(true);
     config.resolve.alias
       .set("@", resolve("src"))
@@ -98,7 +98,7 @@ module.exports = {
       .set("@api", resolve("src/api"))
       .set("@node_modules", resolve("node_modules"));
 
-    // 分析工具
+    // analyzing tool
     if (process.env.npm_config_report) {
       config
         .plugin("webpack-bundle-analyzer")
@@ -106,7 +106,7 @@ module.exports = {
     }
   },
 
-  // 不输出 map 文件
+// Do not output map files
   productionSourceMap: false,
 
   devServer: {
@@ -125,7 +125,7 @@ module.exports = {
 
   pluginOptions: {
     i18n: {
-      locale: "zh-chs",
+      locale: "hn",
       fallbackLocale: "en",
       localeDir: "locales",
       enableInSFC: true,

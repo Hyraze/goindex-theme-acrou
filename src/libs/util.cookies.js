@@ -3,7 +3,7 @@ import Cookies from 'js-cookie'
 const cookies = {}
 
 /**
- * @description 存储 cookie 值
+ * @description Store cookie value
  * @param {String} name cookie name
  * @param {String} value cookie value
  * @param {Object} setting cookie setting
@@ -17,7 +17,7 @@ cookies.set = function (name = 'default', value = '', cookieSetting = {}) {
 }
 
 /**
- * @description 拿到 cookie 值
+ * @description Get cookie value
  * @param {String} name cookie name
  */
 cookies.get = function (name = 'default') {
@@ -25,14 +25,14 @@ cookies.get = function (name = 'default') {
 }
 
 /**
- * @description 拿到 cookie 全部的值
+ * @description Get all the values of the cookie
  */
 cookies.getAll = function () {
   return Cookies.get()
 }
 
 /**
- * @description 删除 cookie
+ * @description Delete cookies
  * @param {String} name cookie name
  */
 cookies.remove = function (name = 'default') {
