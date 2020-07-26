@@ -65,9 +65,9 @@ var authConfig = {
 };
 
 var themeOptions = {
-  cdn: "https://cdn.jsdelivr.net/gh/Hyraze/goindex-theme-acrou",
+  cdn: "https://cloud.jsonpop.cn/go2index/beta/v2.0.8",
   // 主题版本号
-  version: "2.0.5",
+  version: "2.0.8",
   //可选默认系统语言:en/zh-chs/zh-cht
   languages: "en",
   render: {
@@ -85,19 +85,24 @@ var themeOptions = {
      * 是否渲染文件/文件夹描述
      * Render file/folder description or not
      */
-    desc: false,
+    desc: false
   },
   /**
    * 播放器选项
    * Player options
    */
-  player: {
+  video: {
     /**
      * 播放器api（不指定则使用浏览器默认播放器）
      * Player api(Use browser default player if not specified)
      */
-    api: "https://api.jsonpop.cn/demo/blplyaer/?url=",
+    api: "",
+    autoplay: true
   },
+  audio: {
+    lrcType: 3,
+    audios: []
+  }
 };
 // =======Options END=======
 
@@ -146,7 +151,7 @@ function html(current_drive_order = 0, model = {}) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
   <title>${authConfig.siteName}</title>
   <style>
-    @import url(${themeOptions.cdn}@${themeOptions.version}/dist/style.min.css);
+    @import url(${themeOptions.cdn}/dist/style.css);
   </style>
   <script>
     window.gdconfig = JSON.parse('${JSON.stringify({
@@ -163,9 +168,7 @@ function html(current_drive_order = 0, model = {}) {
 </head>
 <body>
     <div id="app"></div>
-    <script src="${themeOptions.cdn}@${
-    themeOptions.version
-  }/dist/app.min.js"></script>
+    <script src="${themeOptions.cdn}/dist/app.js"></script>
 </body>
 </html>
 `;
